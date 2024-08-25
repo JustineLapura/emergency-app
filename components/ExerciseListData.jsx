@@ -16,7 +16,7 @@ const ExerciseListData = ({ data }) => {
       <FlatList
         data={data}
         numColumns={2}
-        keyExtractor={(item) => item.name}
+        keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 60, paddingTop: 20 }}
         columnWrapperStyle={{ justifyContent: "space-between" }}
@@ -39,7 +39,7 @@ const ExerciseCard = ({ item, router }) => {
       >
         <View className="bg-neutral-200 shadow rounded-[25px]">
           <Image
-            source={{ uri: item.gifUrl }}
+            source={{ uri: item.imageUrl }}
             contentFit="cover"
             style={{ width: wp(44), height: wp(52) }}
             className="rounded-[25px]"
@@ -52,7 +52,7 @@ const ExerciseCard = ({ item, router }) => {
           }}
           className="text-neutral-700 font-semibold ml-1 tracking-wide"
         >
-          {item.name}
+          {item.title}
         </Text>
       </TouchableOpacity>
     </View>

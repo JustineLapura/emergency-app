@@ -15,7 +15,7 @@ const BodyParts = () => {
 
   return (
     <View className="mx-4">
-      <Text className="text-2xl font-bold text-gray-700">Exercises</Text>
+      <Text className="text-2xl font-bold text-gray-700">Emergencies</Text>
 
       <FlatList
         data={bodyParts}
@@ -23,7 +23,10 @@ const BodyParts = () => {
         keyExtractor={(item) => item.name}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 50, paddingTop: 20 }}
-        columnWrapperStyle={{ justifyContent: "space-between" }}
+        columnWrapperStyle={{
+          justifyContent: "space-between",
+          alignItems: "start",
+        }}
         renderItem={({ item, index }) => (
           <BodyPartCard router={router} index={index} item={item} />
         )}
@@ -34,27 +37,36 @@ const BodyParts = () => {
 
 const BodyPartCard = ({ item, router, index }) => {
   return (
-    <View>
+    <View className="mb-5">
       <TouchableOpacity
         onPress={() => router.push({ pathname: "/exercises", params: item })}
         style={{ width: wp(44), height: wp(52) }}
-        className="flex-1 justify-center items-center p-4 mb-4"
+        className="flex-1 justify-center items-center p-4 mb-2"
       >
         <Image
-          source={item.image}
+          source={{ uri: item.image }}
           resizeMode="cover"
           style={{ width: wp(44), height: wp(52) }}
           className="rounded-[35px]"
         />
       </TouchableOpacity>
 
-      <LinearGradient
+      {/* <LinearGradient
         colors={["transparent", "rgba(0,0,0,0.9)"]}
         style={{ width: wp(44), height: wp(15) }}
         start={{ x: 0.5, y: 0 }}
         end={{ x: 0.5, y: 1 }}
         className="absolute bottom-4 rounded-b-[35px]"
-      />
+      /> */}
+      <Text
+        style={{
+          fontSize: hp(2.3),
+          maxWidth: wp(44),
+        }}
+        className="text-neutral-700 text-lg font-semibold ml-1 tracking-wide"
+      >
+        {item.name}
+      </Text>
     </View>
   );
 };

@@ -15,13 +15,14 @@ const Home = () => {
     <SafeAreaView className="flex-1 flex bg-orange-100">
       <StatusBar style="dark" />
       <View className="flex-1 flex justify-around my-4">
+        <StatusBar style="dark" />
         <View>
           <Text className="text-orange-500 font-bold text-4xl text-center">
-            Welcome to
+            Please choose your
           </Text>
 
           <Text className="text-orange-500 font-bold text-4xl text-center">
-            Emergency App!
+            preferred option
           </Text>
         </View>
         <View className="flex-row justify-center">
@@ -33,11 +34,27 @@ const Home = () => {
         </View>
         <View className="space-y-4">
           <TouchableOpacity
-            onPress={() => router.push("/categories")}
+            onPress={() => router.push("/home")}
             className="py-3 bg-orange-400 mx-7 rounded-xl"
           >
             <Text className="text-xl font-bold text-center text-white">
-              Get Started
+              Offline
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => router.push("/home")}
+            className="py-3 bg-orange-400 mx-7 rounded-xl"
+          >
+            <Text className="text-xl font-bold text-center text-white">
+              Online
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => router.push("/home")}
+            className="py-3 bg-orange-400 mx-7 rounded-xl"
+          >
+            <Text className="text-xl font-bold text-center text-white">
+              Admin
             </Text>
           </TouchableOpacity>
         </View>

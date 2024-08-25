@@ -6,161 +6,101 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import backImage from "../assets/images/back.png";
+import fireImage from "../assets/images/fire.jpg";
 import { TouchableOpacity } from "react-native";
 import ExerciseListData from "../components/ExerciseListData";
 import { ScrollView } from "react-native-virtualized-view";
 
-const exercisesData = [
+const fireSafetyTips = [
   {
-    bodyPart: "back",
-    equipment: "cable",
-    gifUrl: "https://v2.exercisedb.io/image/BhHC6ZPj0-AVDe",
-    id: "0007",
-    name: "alternate lateral pulldown",
-    target: "lats",
-    secondaryMuscles: ["biceps", "shoulders"],
-    instructions: [
-      "Attach a wide bar to the lat pulldown machine.",
-      "Grip the bar with your palms facing forward.",
-      "Pull the bar down to your chest while keeping your back straight.",
-      "Slowly release the bar back to the starting position.",
-    ],
+    id: "001",
+    step: 1,
+    tipCategory: "During",
+    title: "Alert Others and Call 911",
+    imageUrl:
+      "https://media.istockphoto.com/id/1222185939/photo/black-man-holding-smart-phone-with-emergency-number.jpg?s=1024x1024&w=is&k=20&c=ccg95GUDtfpVUlW-gldWOD7ZvSmSS5K7_fdbzavcyds=",
+    description:
+      "If you see a fire, immediately alert others in the area. Call 911 to report the fire, providing as much detail as possible about the location and severity.",
   },
   {
-    bodyPart: "back",
-    equipment: "body weight",
-    gifUrl: "https://v2.exercisedb.io/image/DK7bC1R6WhodUr",
-    id: "3293",
-    name: "archer pull up",
-    target: "lats",
-    secondaryMuscles: ["biceps", "forearms"],
-    instructions: [
-      "Grip the pull-up bar with a shoulder-width grip.",
-      "Pull up towards one side while keeping the other arm extended.",
-      "Lower yourself down and repeat on the other side.",
-      "Alternate sides with each repetition.",
-    ],
+    id: "002",
+    step: 2,
+    tipCategory: "During",
+    title: "Use a Fire Extinguisher if Safe",
+    imageUrl:
+      "https://plus.unsplash.com/premium_photo-1721460167314-660575358909?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description:
+      "If the fire is small and manageable, use a fire extinguisher following the PASS technique (Pull, Aim, Squeeze, Sweep). If the fire is too large, evacuate immediately.",
   },
   {
-    bodyPart: "back",
-    equipment: "leverage machine",
-    gifUrl: "https://v2.exercisedb.io/image/GlQaqkUJpZVKOS",
-    id: "0015",
-    name: "assisted parallel close grip pull-up",
-    target: "lats",
-    secondaryMuscles: ["biceps", "forearms"],
-    instructions: [
-      "Use an assisted pull-up machine with a parallel grip.",
-      "Pull yourself up until your chin is above the handles.",
-      "Lower yourself slowly back to the starting position.",
-      "Repeat for the desired number of repetitions.",
-    ],
+    id: "003",
+    step: 3,
+    tipCategory: "During",
+    title: "Evacuate the Building",
+    imageUrl:
+      "https://media.istockphoto.com/id/468731550/photo/running-away.jpg?s=612x612&w=is&k=20&c=ShPH2eiDHN3is092zBtDfvXRbAgk8ddxTdsL8DhuYDw=",
+    description:
+      "Leave the building immediately, using the nearest safe exit. Do not use elevators during a fire. Assist others in evacuating if possible.",
   },
   {
-    bodyPart: "back",
-    equipment: "leverage machine",
-    gifUrl: "https://v2.exercisedb.io/image/DsfzI29-cj82GX",
-    id: "0017",
-    name: "assisted pull-up",
-    target: "lats",
-    secondaryMuscles: ["biceps", "forearms"],
-    instructions: [
-      "Use an assisted pull-up machine.",
-      "Grip the handles with your palms facing forward.",
-      "Pull yourself up until your chin is above the bar.",
-      "Lower yourself slowly back to the starting position.",
-    ],
+    id: "004",
+    step: 4,
+    tipCategory: "During",
+    title: "Crawl Low Under Smoke",
+    imageUrl:
+      "https://media.istockphoto.com/id/98843995/photo/man-lying-on-warehouse-floor.jpg?s=1024x1024&w=is&k=20&c=NxPgl5OWzFuuHdeSADo3GCKO8VyYJuOG9p2uH-_YycA=",
+    description:
+      "If there is smoke, stay low to the ground to avoid inhaling toxic fumes. Cover your mouth with a cloth if possible, and move quickly to the nearest exit.",
   },
   {
-    bodyPart: "back",
-    equipment: "leverage machine",
-    gifUrl: "https://v2.exercisedb.io/image/-UebZp9sZzk2B6",
-    id: "1431",
-    name: "assisted standing chin-up",
-    target: "lats",
-    secondaryMuscles: ["biceps", "forearms"],
-    instructions: [
-      "Stand on the platform of an assisted chin-up machine.",
-      "Grip the bar with an underhand grip.",
-      "Pull yourself up until your chin is above the bar.",
-      "Lower yourself back to the starting position.",
-    ],
+    id: "005",
+    step: 5,
+    tipCategory: "During",
+    title: "Check Doors for Heat",
+    imageUrl:
+      "https://media.istockphoto.com/id/1415286950/photo/a-green-fire-exit-sign-is-placed-on-the-ceiling-along-the-dimly-lit-corridor-and-there-is.jpg?s=612x612&w=is&k=20&c=mk1n309bX4-UzbkubRxo7DGtYz6zXfeqhnTtsDKPpyc=",
+    description:
+      "Before opening any doors, use the back of your hand to check if the door is hot. If it is hot, do not open it. Look for an alternate exit.",
   },
   {
-    bodyPart: "back",
-    equipment: "leverage machine",
-    gifUrl: "https://v2.exercisedb.io/image/oGa88LLoMEIy67",
-    id: "1432",
-    name: "assisted standing pull-up",
-    target: "lats",
-    secondaryMuscles: ["biceps", "forearms"],
-    instructions: [
-      "Stand on the platform of an assisted pull-up machine.",
-      "Grip the handles with your palms facing forward.",
-      "Pull yourself up until your chin is above the bar.",
-      "Lower yourself back to the starting position.",
-    ],
+    id: "006",
+    step: 6,
+    tipCategory: "During",
+    title: "Stop, Drop, and Roll",
+    imageUrl:
+      "https://plus.unsplash.com/premium_photo-1677993185867-7a19fa79b005?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description:
+      "If your clothes catch on fire, stop immediately, drop to the ground, and roll back and forth to smother the flames. Cover your face with your hands to protect it.",
   },
   {
-    bodyPart: "back",
-    equipment: "stability ball",
-    gifUrl: "https://v2.exercisedb.io/image/2NT2uT6Jp6lX13",
-    id: "1314",
-    name: "back extension on exercise ball",
-    target: "spine",
-    secondaryMuscles: ["glutes", "hamstrings"],
-    instructions: [
-      "Lie face down on a stability ball with your hands behind your head.",
-      "Lift your chest off the ball while keeping your feet on the ground.",
-      "Lower yourself back down to the starting position.",
-      "Repeat for the desired number of repetitions.",
-    ],
+    id: "007",
+    step: 7,
+    tipCategory: "During",
+    title: "Assist Those with Disabilities",
+    imageUrl:
+      "https://images.unsplash.com/photo-1599282271323-f4d8e3b18df1?q=80&w=1012&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    description:
+      "If you are able, help individuals with disabilities or mobility issues evacuate safely. If you cannot help, inform emergency responders of their location.",
   },
   {
-    bodyPart: "back",
-    equipment: "body weight",
-    gifUrl: "https://v2.exercisedb.io/image/2ZxZvy-bhR41mb",
-    id: "3297",
-    name: "back lever",
-    target: "upper back",
-    secondaryMuscles: ["shoulders", "core"],
-    instructions: [
-      "Hang from a bar with your body parallel to the ground.",
-      "Keep your arms straight and hold the position.",
-      "Maintain a tight core to keep your body stable.",
-      "Lower yourself slowly back to the starting position.",
-    ],
+    id: "008",
+    step: 8,
+    tipCategory: "During",
+    title: "Gather at a Designated Meeting Spot",
+    imageUrl:
+      "https://media.istockphoto.com/id/1224474299/photo/sunset.jpg?s=612x612&w=is&k=20&c=GBHJGlfG0zI79mRKE1aD4DKPAjvdHQ32tjXiwOriHtw=",
+    description:
+      "Once outside, gather at your designated meeting spot. Account for all family members or colleagues and inform emergency responders if anyone is missing.",
   },
   {
-    bodyPart: "back",
-    equipment: "body weight",
-    gifUrl: "https://v2.exercisedb.io/image/Nae9yQxb7UGj-7",
-    id: "1405",
-    name: "back pec stretch",
-    target: "lats",
-    secondaryMuscles: ["shoulders"],
-    instructions: [
-      "Stand with your feet shoulder-width apart.",
-      "Reach both arms behind you and clasp your hands together.",
-      "Pull your hands away from your back while keeping your chest lifted.",
-      "Hold the stretch for 20-30 seconds.",
-    ],
-  },
-  {
-    bodyPart: "back",
-    equipment: "band",
-    gifUrl: "https://v2.exercisedb.io/image/1KvSCKwRB9yfRM",
-    id: "0970",
-    name: "band assisted pull-up",
-    target: "lats",
-    secondaryMuscles: ["biceps", "forearms"],
-    instructions: [
-      "Attach a resistance band to a pull-up bar.",
-      "Place one foot in the band to reduce your body weight.",
-      "Pull yourself up until your chin is above the bar.",
-      "Lower yourself back to the starting position.",
-    ],
+    id: "009",
+    step: 9,
+    tipCategory: "During",
+    title: "Do Not Re-Enter the Building",
+    imageUrl:
+      "https://media.istockphoto.com/id/468731550/photo/running-away.jpg?s=612x612&w=is&k=20&c=ShPH2eiDHN3is092zBtDfvXRbAgk8ddxTdsL8DhuYDw=",
+    description:
+      "Do not re-enter the building until emergency responders have declared it safe. Wait for further instructions from the fire department.",
   },
 ];
 
@@ -171,13 +111,13 @@ const Exercises = () => {
     <ScrollView>
       <StatusBar style="dark" />
       <Image
-        source={backImage}
+        source={fireImage}
         style={{ width: wp(100), height: hp(45) }}
         className="rounded-b-[40px]"
       />
       <TouchableOpacity
         onPress={() => router.back()}
-        className="flex justify-center items-center  pr-1 bg-rose-500 mx-4 absolute rounded-full"
+        className="flex justify-center items-center  pr-1 bg-orange-500 mx-4 absolute rounded-full"
         style={{ height: hp(5.5), width: hp(5.5), marginTop: hp(7) }}
       >
         <Ionicons name="caret-back-outline" size={hp(4)} color="white" />
@@ -189,14 +129,12 @@ const Exercises = () => {
           style={{ fontSize: hp(3) }}
           className="font-semibold text-neutral-700"
         >
-          <Text className="uppercase font-bold tracking-wide">
-            "{exercisesData[0].bodyPart}"
-          </Text>
+          <Text className="uppercase font-bold tracking-wide">"Fire"</Text>
           {"  "}
-          Exercises
+          Safety Tips
         </Text>
         <View className="mb-10">
-          <ExerciseListData data={exercisesData} />
+          <ExerciseListData data={fireSafetyTips} />
         </View>
       </View>
     </ScrollView>

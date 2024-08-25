@@ -11,7 +11,7 @@ import BodyParts from "../components/BodyParts";
 
 const Home = () => {
   return (
-    <SafeAreaView className="flex-1 bg-white flex space-y-5" edges={["top"]}>
+    <SafeAreaView className="flex-1 bg-wrhite flex space-y-5" edges={["top"]}>
       <StatusBar style="dark" />
 
       {/* punchline and avatar */}
@@ -21,13 +21,13 @@ const Home = () => {
             style={{ fontSize: hp(4.5) }}
             className="uppercase font-bold tracking-wider text-neutral-700"
           >
-            Ready To
+            Report an
           </Text>
           <Text
             style={{ fontSize: hp(4.5) }}
-            className="uppercase text-rose-500 font-bold tracking-wider "
+            className="uppercase text-orange-500 font-bold tracking-wider "
           >
-            Workout
+            Emergency
           </Text>
         </View>
 
@@ -48,7 +48,7 @@ const Home = () => {
 
       {/* Image Slider  */}
       <Image
-        source={require("../assets/images/slide2.png")}
+        source={require("../assets/images/rescue.jpg")}
         className="w-[90%] h-[200px] rounded-3xl mx-auto object-cover"
       />
 
