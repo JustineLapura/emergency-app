@@ -8,26 +8,28 @@ import {
 import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { useRouter } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
 
 const Home = () => {
   const router = useRouter();
   return (
-    <SafeAreaView className="flex-1 flex bg-orange-100">
+    <SafeAreaView className="flex-1 flex bg-gray-200">
       <StatusBar style="dark" />
       <View className="flex-1 flex justify-around my-4">
         <StatusBar style="dark" />
         <View>
-          <Text className="text-orange-500 font-bold text-4xl text-center">
-            Please choose your
-          </Text>
-
-          <Text className="text-orange-500 font-bold text-4xl text-center">
-            preferred option
-          </Text>
+          <View className="flex-row justify-start">
+            <TouchableOpacity
+              onPress={() => router.push("/")}
+              className="bg-red-500 p-2 rounded-tr-2xl rounded-bl-2xl ml-4"
+            >
+              <Ionicons name="arrow-back" size={20} color="white" />
+            </TouchableOpacity>
+          </View>
         </View>
         <View className="flex-row justify-center">
           <Image
-            source={require("../assets/images/rescue.jpg")}
+            source={require("../assets/images/e-kit.jpg")}
             style={{ width: 250, height: 250 }}
             className="rounded-full"
           />
@@ -35,23 +37,23 @@ const Home = () => {
         <View className="space-y-4">
           <TouchableOpacity
             onPress={() => router.push("/home")}
-            className="py-3 bg-orange-400 mx-7 rounded-xl"
+            className="py-3 bg-red-500 mx-7 rounded-xl"
           >
             <Text className="text-xl font-bold text-center text-white">
               Offline
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => router.push("/home")}
-            className="py-3 bg-orange-400 mx-7 rounded-xl"
+            onPress={() => router.push("/login")}
+            className="py-3 bg-red-500 mx-7 rounded-xl"
           >
             <Text className="text-xl font-bold text-center text-white">
               Online
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => router.push("/home")}
-            className="py-3 bg-orange-400 mx-7 rounded-xl"
+            onPress={() => router.push("/adminLogin")}
+            className="py-3 bg-red-500 mx-7 rounded-xl"
           >
             <Text className="text-xl font-bold text-center text-white">
               Admin

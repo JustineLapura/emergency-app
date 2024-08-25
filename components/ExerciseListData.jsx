@@ -15,11 +15,9 @@ const ExerciseListData = ({ data }) => {
     <View>
       <FlatList
         data={data}
-        numColumns={2}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 60, paddingTop: 20 }}
-        columnWrapperStyle={{ justifyContent: "space-between" }}
         renderItem={({ item, index }) => (
           <ExerciseCard router={router} index={index} item={item} />
         )}
@@ -41,17 +39,18 @@ const ExerciseCard = ({ item, router }) => {
           <Image
             source={{ uri: item.imageUrl }}
             contentFit="cover"
-            style={{ width: wp(44), height: wp(52) }}
+            style={{ width: wp(90), height: wp(52) }}
             className="rounded-[25px]"
           />
         </View>
         <Text
           style={{
-            fontSize: hp(1.7),
-            maxWidth: wp(44),
+            fontSize: hp(2),
+            maxWidth: wp(100),
           }}
-          className="text-neutral-700 font-semibold ml-1 tracking-wide"
+          className="text-red-700 font-semibold ml-1 tracking-wide"
         >
+          <Text className="font-bold text-lg">Step {item.step}: </Text>
           {item.title}
         </Text>
       </TouchableOpacity>

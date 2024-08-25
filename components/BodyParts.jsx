@@ -9,13 +9,27 @@ import { TouchableOpacity } from "react-native";
 import { Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
 
 const BodyParts = () => {
   const router = useRouter();
 
   return (
     <View className="mx-4">
-      <Text className="text-2xl font-bold text-gray-700">Emergencies</Text>
+      <View className="flex-row justify-between items-center mb-2">
+        <Text className="text-3xl font-bold text-red-700">Emergencies</Text>
+        <View className="flex-row">
+          <View className="flex justify-center items-center mr-3 rounded-full bg-blue-500 p-2">
+            <Ionicons name="chatbubble" size={15} color="white" />
+          </View>
+          <View className="flex justify-center items-center mr-3 rounded-full bg-yellow-600 p-2">
+            <Ionicons name="send" size={15} color="white" />
+          </View>
+          <View className="flex justify-center items-center mr-3 rounded-full bg-green-800 p-2">
+            <Ionicons name="call" size={15} color="white" />
+          </View>
+        </View>
+      </View>
 
       <FlatList
         data={bodyParts}
@@ -63,7 +77,7 @@ const BodyPartCard = ({ item, router, index }) => {
           fontSize: hp(2.3),
           maxWidth: wp(44),
         }}
-        className="text-neutral-700 text-lg font-semibold ml-1 tracking-wide"
+        className="text-red-700 text-lg font-semibold ml-1 tracking-wide"
       >
         {item.name}
       </Text>

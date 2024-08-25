@@ -35,7 +35,7 @@ const exerciseDetails = () => {
 
       <TouchableOpacity
         onPress={() => router.back()}
-        className="flex justify-center items-center  pr-1 bg-orange-500 mx-4 absolute rounded-full"
+        className="flex justify-center items-center  pr-1 bg-red-500 mx-4 absolute rounded-full"
         style={{ height: hp(5.5), width: hp(5.5), marginTop: hp(7) }}
       >
         <Ionicons name="caret-back-outline" size={hp(4)} color="white" />
@@ -48,53 +48,35 @@ const exerciseDetails = () => {
       >
         <Text
           style={{
-            fontSize: hp(3.5),
+            fontSize: hp(4.5),
           }}
-          className="font-semibold text-neutral-800 tracking-wide"
+          className="font-bold text-neutral-800 tracking-wide"
         >
           {safetyTip.title}
         </Text>
         <Text
           style={{
-            fontSize: hp(2),
+            fontSize: hp(4),
           }}
-          className=" text-neutral-800 tracking-wide"
+          className=" text-neutral-800 font-semibold tracking-wide"
         >
           Step:{" "}
-          <Text className="font-bold text-neutral-800">{safetyTip.step}</Text>
+          <Text className="font-normal text-neutral-800">{safetyTip.step}</Text>
         </Text>
-        {/* <Text
-          style={{
-            fontSize: hp(2),
-          }}
-          className=" text-neutral-800 tracking-wide"
-        >
-          Secondary Muscles:{" "}
-          <Text className="font-bold text-neutral-800">
-            {safetyTip.secondaryMuscles}
-          </Text>
-        </Text>
+
         <Text
           style={{
-            fontSize: hp(2),
+            fontSize: hp(4),
           }}
-          className=" text-neutral-800 tracking-wide"
+          className=" text-neutral-800 font-semibold tracking-wide"
         >
-          Target:{" "}
-          <Text className="font-bold text-neutral-800">{safetyTip.target}</Text>
-        </Text> */}
+          Instructions: <Text className=" text-neutral-800"></Text>
+        </Text>
         <Text
-          style={{
-            fontSize: hp(3),
-          }}
-          className=" text-neutral-800 tracking-wide"
+          style={{ fontSize: hp(3) }}
+          className="text-neutral-800 tracking-wider leading-7"
         >
-          Instructions:{" "}
-          <Text className="font-bold text-neutral-800">
-            <Text style={{ fontSize: hp(1.7) }} className="text-neutral-800">
-              {safetyTip.instruction}
-            </Text>
-          </Text>
+          {safetyTip.instruction}
         </Text>
       </ScrollView>
     </View>

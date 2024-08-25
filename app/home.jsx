@@ -19,13 +19,13 @@ const Home = () => {
         <View className="space-y-2">
           <Text
             style={{ fontSize: hp(4.5) }}
-            className="uppercase font-bold tracking-wider text-neutral-700"
+            className="uppercase font-bold tracking-wider text-red-700"
           >
             Report an
           </Text>
           <Text
             style={{ fontSize: hp(4.5) }}
-            className="uppercase text-orange-500 font-bold tracking-wider "
+            className="uppercase text-red-700 font-bold tracking-wider "
           >
             Emergency
           </Text>
@@ -39,7 +39,7 @@ const Home = () => {
           />
           <View
             style={{ height: hp(5.5), width: hp(5.5) }}
-            className="bg-neutral-200 rounded-full flex justify-center items-center border-[3px] border-neutral-300"
+            className="bg-neutral-200 rounded-full flex justify-center items-center border-[3px] border-neutral-400"
           >
             <Ionicons name="notifications" size={hp(3)} color="gray" />
           </View>
@@ -48,7 +48,8 @@ const Home = () => {
 
       {/* Image Slider  */}
       <Image
-        source={require("../assets/images/rescue.jpg")}
+        resizeMode="contain"
+        source={require("../assets/images/e-kit.jpg")}
         className="w-[90%] h-[200px] rounded-3xl mx-auto object-cover"
       />
 

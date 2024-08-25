@@ -117,7 +117,7 @@ const Exercises = () => {
       />
       <TouchableOpacity
         onPress={() => router.back()}
-        className="flex justify-center items-center  pr-1 bg-orange-500 mx-4 absolute rounded-full"
+        className="flex justify-center items-center  pr-1 bg-red-500 mx-4 absolute rounded-full"
         style={{ height: hp(5.5), width: hp(5.5), marginTop: hp(7) }}
       >
         <Ionicons name="caret-back-outline" size={hp(4)} color="white" />
@@ -127,7 +127,7 @@ const Exercises = () => {
       <View className="mx-4 space-y-3 mt-4">
         <Text
           style={{ fontSize: hp(3) }}
-          className="font-semibold text-neutral-700"
+          className="font-semibold text-red-700"
         >
           <Text className="uppercase font-bold tracking-wide">"Fire"</Text>
           {"  "}
