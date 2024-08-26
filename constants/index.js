@@ -58,3 +58,93 @@ export const bodyParts = [
       "https://media.istockphoto.com/id/912151500/photo/overturned-motorcycle-after-collision.jpg?s=612x612&w=is&k=20&c=WygaWuqVwqv02flII4xluIJNdEuEQ9Fj1sPzz5ycZ6I=", // Image of transport accidents
   },
 ];
+
+export const categories = [
+  "Light 💡", // Low alertness
+  "Warning ⚠️", // Moderate alertness
+  "Danger 🚨", // High alertness
+  "Critical 🛑", // Very high alertness, urgent action needed
+];
+
+export const emergencyAlerts = [
+  {
+    name: "John Doe",
+    date: "2024-08-26",
+    timeSent: "01:45 PM",
+    alertLevel: "🛑",
+    desc: "Severe accident on Highway 50 involving multiple vehicles.",
+    image: "https://randomuser.me/api/portraits/men/1.jpg",
+  },
+  {
+    name: "Jane Smith",
+    date: "2024-08-26",
+    timeSent: "12:30 PM",
+    alertLevel: "🚨",
+    desc: "Fire reported in the downtown area, multiple buildings affected.",
+    image: "https://randomuser.me/api/portraits/women/2.jpg",
+  },
+  {
+    name: "Michael Johnson",
+    date: "2024-08-26",
+    timeSent: "11:00 AM",
+    alertLevel: "Warning ⚠️",
+    desc: "Heavy rainfall expected, possible flooding in low-lying areas.",
+    image: "https://randomuser.me/api/portraits/men/3.jpg",
+  },
+  {
+    name: "Emily Davis",
+    date: "2024-08-26",
+    timeSent: "09:20 AM",
+    alertLevel: "💡",
+    desc: "Minor roadwork causing slight delays in traffic.",
+    image: "https://randomuser.me/api/portraits/women/4.jpg",
+  },
+  {
+    name: "Robert Brown",
+    date: "2024-08-26",
+    timeSent: "02:15 PM",
+    alertLevel: "🛑",
+    desc: "Gas leak detected in residential area, evacuation in progress.",
+    image: "https://randomuser.me/api/portraits/men/5.jpg",
+  },
+  {
+    name: "Olivia Wilson",
+    date: "2024-08-26",
+    timeSent: "08:45 AM",
+    alertLevel: "🚨",
+    desc: "Wildfire spreading rapidly in forested region, immediate evacuation required.",
+    image: "https://randomuser.me/api/portraits/women/6.jpg",
+  },
+  {
+    name: "Daniel Miller",
+    date: "2024-08-26",
+    timeSent: "07:30 AM",
+    alertLevel: "⚠️",
+    desc: "High winds expected, potential for power outages.",
+    image: "https://randomuser.me/api/portraits/men/7.jpg",
+  },
+  {
+    name: "Sophia Martinez",
+    date: "2024-08-26",
+    timeSent: "06:00 AM",
+    alertLevel: "💡",
+    desc: "Scheduled maintenance on water supply.",
+    image: "https://randomuser.me/api/portraits/women/8.jpg",
+  },
+  {
+    name: "William Garcia",
+    date: "2024-08-26",
+    timeSent: "10:20 AM",
+    alertLevel: "🛑",
+    desc: "Tornado spotted in the area, take shelter immediately.",
+    image: "https://randomuser.me/api/portraits/men/9.jpg",
+  },
+  {
+    name: "Ava Anderson",
+    date: "2024-08-26",
+    timeSent: "03:30 PM",
+    alertLevel: "🚨",
+    desc: "Earthquake detected, aftershocks expected.",
+    image: "https://randomuser.me/api/portraits/women/10.jpg",
+  },
+];

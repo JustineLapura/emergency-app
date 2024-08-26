@@ -17,19 +17,30 @@ const BodyParts = () => {
   return (
     <View className="mx-4">
       <View className="flex-row justify-between items-center mb-2">
-        <Text className="text-3xl font-bold text-red-700">Emergencies</Text>
-        <View className="flex-row">
-          <View className="flex justify-center items-center mr-3 rounded-full bg-blue-500 p-2">
+        <View className="flex-row justify-end">
+          <TouchableOpacity className="flex justify-center items-center mr-3 rounded-full bg-blue-500 p-2">
             <Ionicons name="chatbubble" size={15} color="white" />
-          </View>
-          <View className="flex justify-center items-center mr-3 rounded-full bg-yellow-600 p-2">
-            <Ionicons name="send" size={15} color="white" />
-          </View>
-          <View className="flex justify-center items-center mr-3 rounded-full bg-green-800 p-2">
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => router.push("/call")}
+            className="flex justify-center items-center mr-3 rounded-full bg-green-800 p-2"
+          >
             <Ionicons name="call" size={15} color="white" />
-          </View>
+          </TouchableOpacity>
         </View>
+        <TouchableOpacity
+          onPress={() => router.push("/sendEmergency")}
+          className="flex-row items-center bg-red-500 rounded-xl py-2 px-3"
+        >
+          <Text className="text-white text-xs mr-2 font-bold tracking-wider">
+            Send Emergency
+          </Text>
+          <Ionicons name="send" size={10} color="white" />
+        </TouchableOpacity>
       </View>
+      {/* <Text className="text-2xl text-center font-bold text-red-700">
+        Emergencies
+      </Text> */}
 
       <FlatList
         data={bodyParts}

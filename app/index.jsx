@@ -17,7 +17,7 @@ const Home = () => {
       <View className="flex-1 flex justify-around my-4">
         <View>
           <Text className="text-red-500 font-bold text-4xl text-center">
-            Welcome to
+            Welcome to SSU
           </Text>
 
           <Text className="text-red-500 font-bold text-4xl text-center">

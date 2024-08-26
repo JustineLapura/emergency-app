@@ -8,6 +8,8 @@ import {
 } from "react-native-responsive-screen";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import BodyParts from "../components/BodyParts";
+import { TouchableOpacity } from "react-native";
+import { router } from "expo-router";
 
 const Home = () => {
   return (
@@ -15,35 +17,42 @@ const Home = () => {
       <StatusBar style="dark" />
 
       {/* punchline and avatar */}
-      <View className="flex-row justify-between items-center mx-5">
-        <View className="space-y-2">
-          <Text
-            style={{ fontSize: hp(4.5) }}
-            className="uppercase font-bold tracking-wider text-red-700"
+      <View>
+        <View className="flex-row justify-between items-center mx-5">
+          <TouchableOpacity
+            onPress={() => router.push("/categories")}
+            className="bg-red-500 p-2 rounded-tr-2xl rounded-bl-2xl ml-4"
           >
-            Report an
-          </Text>
-          <Text
-            style={{ fontSize: hp(4.5) }}
-            className="uppercase text-red-700 font-bold tracking-wider "
-          >
-            Emergency
-          </Text>
-        </View>
+            <Ionicons name="arrow-back" size={20} color="white" />
+          </TouchableOpacity>
 
-        <View className="flex justify-center items-center space-y-2">
-          <Image
-            source={require("../assets/images/profile.jpg")}
-            style={{ height: hp(6), width: hp(6) }}
-            className="rounded-full"
-          />
-          <View
-            style={{ height: hp(5.5), width: hp(5.5) }}
-            className="bg-neutral-200 rounded-full flex justify-center items-center border-[3px] border-neutral-400"
-          >
-            <Ionicons name="notifications" size={hp(3)} color="gray" />
+          <View className="flex-row gap-3">
+            <View className="flex justify-center items-center space-y-2">
+              <TouchableOpacity
+                onPress={() => router.push("/notifications")}
+                className="relative h-12 w-12 flex justify-center items-center "
+              >
+                <Ionicons name="notifications" size={40} color="gray" />
+                <View className="absolute top-1 right-1 bg-red-600 h-5 w-5 rounded-full flex justify-center items-center">
+                  <Text className="text-white text-xs font-bold">3</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity onPress={() => router.push("/profile")}>
+              <Image
+                source={require("../assets/images/john doe.jpg")}
+                style={{ height: hp(6), width: hp(6) }}
+                className="rounded-full"
+              />
+            </TouchableOpacity>
           </View>
         </View>
+        {/* <Text
+          style={{ fontSize: hp(4) }}
+          className="uppercase text-red-700 font-bold tracking-wider "
+        >
+          Report an Emergency
+        </Text> */}
       </View>
 
       {/* Image Slider  */}
