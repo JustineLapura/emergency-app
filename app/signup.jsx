@@ -5,6 +5,7 @@ import {
   Image,
   TextInput,
   Alert,
+  ActivityIndicator,
 } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -12,8 +13,9 @@ import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import { Picker } from "@react-native-picker/picker";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../config/firebase";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { doc, getFirestore, setDoc } from "firebase/firestore";
+import { auth, app } from "../config/firebase";
 
 const Signup = () => {
   const router = useRouter();
@@ -21,12 +23,13 @@ const Signup = () => {
   // State for user inputs
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
-  const [mobileNumber, setMobileNumber] = useState("");
+  const [phoneNumber, setMobileNumber] = useState("");
   const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
-
-  // State for error handling
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+
+  const db = getFirestore(app);
 
   // Validation function
   const validate = () => {
@@ -34,7 +37,7 @@ const Signup = () => {
 
     if (!fullName) newErrors.fullName = "Full Name is required.";
     if (!email) newErrors.email = "Email Address is required.";
-    if (!mobileNumber) newErrors.mobileNumber = "Mobile Number is required.";
+    if (!phoneNumber) newErrors.phoneNumber = "Mobile Number is required.";
     if (!gender) newErrors.gender = "Gender is required.";
     if (!password) newErrors.password = "Password is required.";
     if (password && password.length < 6)
@@ -47,8 +50,35 @@ const Signup = () => {
   // Handle signup submission
   const handleSubmit = async () => {
     if (validate()) {
+      setLoading(true); // Set loading to true when starting the sign-up process
       try {
-        await createUserWithEmailAndPassword(auth, email, password);
+        // Create the user with email and password
+        const { user } = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+        // Optionally update the fullName
+        await updateProfile(user, {
+          displayName: fullName,
+        });
+
+        console.log("User data to be stored:", {
+          fullName,
+          email,
+          phoneNumber,
+          gender,
+        });
+
+        // Save additional user data in Firestore
+        await setDoc(doc(db, "users", user.uid), {
+          fullName,
+          email,
+          phoneNumber,
+          gender,
+        });
+
         console.log("User signed up successfully");
         router.push("/home");
       } catch (error) {
@@ -71,7 +101,6 @@ const Signup = () => {
               "The email address you entered is already in use. Please use a different email or try logging in.";
             break;
           case "auth/weak-password":
-            sa;
             alertTitle = "Weak Password";
             alertMessage =
               "Your password is too weak. Please choose a password with at least 6 characters, including letters and numbers.";
@@ -81,7 +110,9 @@ const Signup = () => {
             break;
         }
 
-        alert(alertTitle, alertMessage);
+        Alert.alert(alertTitle, alertMessage);
+      } finally {
+        setLoading(false); // Set loading to false once the process is complete
       }
     }
   };
@@ -129,10 +160,10 @@ const Signup = () => {
           </Text>
           <TextInput
             className={`p-2 text-gray-700 rounded-2xl mb-3 ${
-              errors.mobileNumber ? "border-red-500 border-2" : "bg-gray-100"
+              errors.phoneNumber ? "border-red-500 border-2" : "bg-gray-100"
             }`}
             placeholder="12345678901"
-            value={mobileNumber}
+            value={phoneNumber}
             onChangeText={(text) => setMobileNumber(text)}
             keyboardType="numeric"
           />
@@ -166,11 +197,18 @@ const Signup = () => {
           />
           <TouchableOpacity
             onPress={handleSubmit}
-            className="py-3 bg-red-500 rounded-xl"
+            className={`py-3 rounded-xl ${
+              loading ? "bg-gray-500" : "bg-red-500"
+            }`}
+            disabled={loading}
           >
-            <Text className="text-white text-lg font-bold text-center">
-              Sign up
-            </Text>
+            {loading ? (
+              <ActivityIndicator color="white" size={24} />
+            ) : (
+              <Text className="text-white text-lg font-bold text-center">
+                Sign up
+              </Text>
+            )}
           </TouchableOpacity>
         </View>
 

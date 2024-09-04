@@ -1,13 +1,34 @@
 import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import { Picker } from "@react-native-picker/picker";
+import { getAuth } from "firebase/auth";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
+import { app } from "../config/firebase";
 
 const Profile = () => {
   const router = useRouter();
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  const [userData, setUserData] = useState(null);
+  console.log("User Profile: ", userData);
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (auth.currentUser) {
+        const uid = auth.currentUser.uid;
+        const userDoc = await getDoc(doc(db, "users", uid));
+        if (userDoc.exists()) {
+          setUserData(userDoc.data());
+        }
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
   return (
     <View className="flex-1 bg-red-200">
       <StatusBar style="dark" />
@@ -34,7 +55,7 @@ const Profile = () => {
           <TextInput
             className="p-3 bg-gray-100 text-gray-700 rounded-2xl mb-3"
             placeholder="John Doe"
-            value="John Doe"
+            value={userData?.fullName}
           />
           <Text className="text-gray-700 ml-4 font-semibold">
             Email Address
@@ -42,7 +63,7 @@ const Profile = () => {
           <TextInput
             className="p-3 bg-gray-100 text-gray-700 rounded-2xl mb-3"
             placeholder="email@example.com"
-            value="email@example.com"
+            value={userData?.email}
           />
           <Text className="text-gray-700 ml-4 font-semibold">
             Mobile Number
@@ -50,11 +71,11 @@ const Profile = () => {
           <TextInput
             className="p-3 bg-gray-100 text-gray-700 rounded-2xl mb-3"
             placeholder="12345678901"
-            value="12345678901"
+            value={userData?.phoneNumber}
           />
           <Text className="text-gray-700 ml-4 font-semibold">Gender</Text>
           <View className=" bg-gray-100 text-gray-700 rounded-2xl mb-3">
-            <Picker>
+            <Picker selectedValue={userData?.gender}>
               <Picker.Item label="Male" value="male" />
               <Picker.Item label="Female" value="female" />
               <Picker.Item label="Other" value="other" />

@@ -19,11 +19,9 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  // State for error handling
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false); // New state for loading
 
-  // Validation function
   const validate = () => {
     const newErrors = {};
 
@@ -38,18 +36,14 @@ const Login = () => {
 
   const handleSubmit = async () => {
     if (validate()) {
+      setLoading(true); // Start loading
       try {
         await signInWithEmailAndPassword(auth, email, password);
-        console.log("User logged insuccessfully");
-        Alert.alert(
-          "Success",
-          "You have successfully logged in! Welcome aboard!"
-        );
+        console.log("User logged in successfully");
         router.push("/home");
       } catch (error) {
         console.log("got error: ", error.message);
 
-        // Enhanced error handling
         let alertTitle = "Log in Failed";
         let alertMessage =
           "An unexpected error occurred. Please try again later.";
@@ -75,7 +69,9 @@ const Login = () => {
             break;
         }
 
-        alert(alertTitle, alertMessage);
+        Alert.alert(alertTitle, alertMessage);
+      } finally {
+        setLoading(false); // Stop loading
       }
     }
   };
@@ -127,10 +123,13 @@ const Login = () => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={handleSubmit}
-            className="py-3 bg-red-500 rounded-xl"
+            className={`py-3 rounded-xl ${
+              loading ? "bg-gray-400" : "bg-red-500"
+            }`}
+            disabled={loading} // Disable button when loading
           >
             <Text className="text-white text-lg font-bold text-center">
-              Login
+              {loading ? "Logging in..." : "Login"}
             </Text>
           </TouchableOpacity>
         </View>
