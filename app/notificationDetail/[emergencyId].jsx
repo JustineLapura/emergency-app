@@ -68,7 +68,7 @@ const Page = () => {
             className="w-32 h-32 rounded-2xl"
           />
           <Text className="text-3xl mt-5 text-white">
-            {emergencyDetail.displayName}
+            {emergencyDetail?.displayName}
           </Text>
         </View>
 
@@ -100,20 +100,20 @@ const Page = () => {
             Emergency
           </Text>
           <Text className="tracking-wide mt-4 text-gray-800">
-            {emergencyDetail.message}
+            {emergencyDetail?.message}
           </Text>
           <Text className="text-3xl font-semibold text-gray-800">
             Location:
           </Text>
           <Text className="tracking-wide mt-4 text-gray-800">
-            {emergencyDetail.location}
+            {emergencyDetail?.location}
           </Text>
         </View>
 
         {/* Add to Cart section  */}
         <View className="mx-4 flex-row justify-between items-center">
           <Text className="text-xl font-semibold text-gray-800">
-            {emergencyDetail.department}
+            {emergencyDetail?.department}
           </Text>
           <View>
             <TouchableOpacity
