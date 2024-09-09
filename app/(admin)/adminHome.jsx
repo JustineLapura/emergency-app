@@ -11,8 +11,9 @@ import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons";
 import { categories, emergencyAlerts } from "../../constants";
-import NotificationCard from "../../components/NotificaionCard";
+import NotificationCard from "../../components/AdminEmergency/NotificaionCard";
 import { useRouter } from "expo-router";
+import Emergencies from "../../components/AdminEmergency/Emergencies";
 
 const AdminHome = () => {
   const [activeCategory, setActiveCategory] = useState("Burger");
@@ -111,7 +112,7 @@ const AdminHome = () => {
         </ScrollView>
 
         {/* Food Cards */}
-        <ScrollView
+        {/* <ScrollView
           contentContainerStyle={{ paddingHorizontal: 20 }}
           horizontal
           showsHorizontalScrollIndicators={false}
@@ -119,7 +120,9 @@ const AdminHome = () => {
           {emergencyAlerts.map((item) => (
             <NotificationCard item={item} key={item.name} />
           ))}
-        </ScrollView>
+        </ScrollView> */}
+
+        <Emergencies />
       </SafeAreaView>
     </View>
   );

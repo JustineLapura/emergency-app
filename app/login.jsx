@@ -122,7 +122,8 @@ const Login = () => {
             <Text className="text-gray-700 my-4">Forgot Password</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={handleSubmit}
+            onPress={() => router.push("/home")}
+            // onPress={handleSubmit}
             className={`py-3 rounded-xl ${
               loading ? "bg-gray-400" : "bg-red-500"
             }`}
