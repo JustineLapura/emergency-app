@@ -67,8 +67,8 @@ const Page = () => {
         </View>
         <View className="flex justify-center items-center">
           <Image
-            source={require("../../assets/images/profile.jpg")}
-            className="w-32 h-32 rounded-2xl"
+            source={require("../../assets/images/profile.png")}
+            className="w-32 h-32 rounded-full "
           />
           <Text className="text-3xl mt-5 text-white">
             {emergencyDetail?.fullName}

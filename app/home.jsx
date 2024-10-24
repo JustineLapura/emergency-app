@@ -63,7 +63,7 @@ const Home = () => {
             </View>
             <TouchableOpacity onPress={() => router.push("/profile")}>
               <Image
-                source={require("../assets/images/john doe.jpg")}
+                source={require("../assets/images/profile.png")}
                 style={{ height: hp(6), width: hp(6) }}
                 className="rounded-full"
               />

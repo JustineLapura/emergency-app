@@ -43,7 +43,7 @@ const Profile = () => {
         </View>
         <View className="flex-row justify-center mb-5">
           <Image
-            source={require("../assets/images/john doe.jpg")}
+            source={require("../assets/images/profile.png")}
             style={{ width: 150, height: 150 }}
             className="rounded-full"
           />
