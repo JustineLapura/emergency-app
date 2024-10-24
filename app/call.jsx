@@ -1,4 +1,11 @@
-import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  TextInput,
+  Linking,
+} from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
@@ -42,7 +49,7 @@ const Login = () => {
                 0998 456 6335
               </Text>
               <TouchableOpacity
-                onPress={() => alert("Initiated emergency hotline call")}
+                onPress={() => Linking.openURL("tel:09984566335")}
                 className="flex justify-center items-center mr-3 rounded-full bg-green-800 p-2"
               >
                 <Ionicons name="call" size={15} color="white" />

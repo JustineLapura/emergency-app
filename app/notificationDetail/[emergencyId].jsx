@@ -4,6 +4,7 @@ import {
   Image,
   SafeAreaView,
   TouchableOpacity,
+  Linking,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
@@ -56,7 +57,9 @@ const Page = () => {
             <Ionicons name="arrow-back" size={20} color="red" />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => alert("Initiated call to the person in need")}
+            onPress={() =>
+              Linking.openURL("tel:" + emergencyDetail.phoneNumber)
+            }
             className="bg-green-500 rounded-2xl p-3 shadow"
           >
             <Ionicons name="call" size={20} color="white" />
@@ -68,7 +71,7 @@ const Page = () => {
             className="w-32 h-32 rounded-2xl"
           />
           <Text className="text-3xl mt-5 text-white">
-            {emergencyDetail?.displayName}
+            {emergencyDetail?.fullName}
           </Text>
         </View>
 
@@ -97,15 +100,15 @@ const Page = () => {
         {/* Information Section  */}
         <View className="mx-4 mt-4 space-y-3 min-h-[200px]">
           <Text className="text-3xl font-semibold text-gray-800">
-            Emergency
+            Emergency ({emergencyDetail?.emergency})
           </Text>
-          <Text className="tracking-wide mt-4 text-gray-800">
+          <Text className="tracking-wide mt-4 text-gray-800 text-lg">
             {emergencyDetail?.message}
           </Text>
           <Text className="text-3xl font-semibold text-gray-800">
             Location:
           </Text>
-          <Text className="tracking-wide mt-4 text-gray-800">
+          <Text className="tracking-wide mt-4 text-gray-800 text-lg">
             {emergencyDetail?.location}
           </Text>
         </View>

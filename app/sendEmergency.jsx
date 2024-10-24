@@ -6,21 +6,42 @@ import {
   TextInput,
   ToastAndroid,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import { Picker } from "@react-native-picker/picker";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDoc,
+  doc,
+} from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import useAuth from "../hooks/useAuth";
 import { app } from "../config/firebase";
 
 const SendEmergency = () => {
-  const { user } = useAuth();
+  // const { user } = useAuth();
+  const auth = getAuth(app);
   const db = getFirestore(app);
-  const auth = getAuth();
+  const [userData, setUserData] = useState(null);
+  console.log("User Profile: ", userData);
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (auth.currentUser) {
+        const uid = auth.currentUser.uid;
+        const userDoc = await getDoc(doc(db, "users", uid));
+        if (userDoc.exists()) {
+          setUserData(userDoc.data());
+        }
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   const [department, setDepartment] = useState("");
   const [location, setLocation] = useState("");
@@ -79,7 +100,7 @@ const SendEmergency = () => {
     }
 
     // Get user details
-    const { displayName, email } = user || {};
+    // const { displayName, email } = user || {};
 
     try {
       // Add emergency data to Firestore
@@ -88,8 +109,10 @@ const SendEmergency = () => {
         location,
         emergency,
         message,
-        displayName, // Include user's display name
-        email, // Include user's email
+        fullName: userData?.fullName, // Include user's fullname
+        email: userData?.email, // Include user's email
+        phoneNumber: userData?.phoneNumber, // Include user's phoneNumber
+        gender: userData?.gender, // Include user's gender
         timestamp: new Date().toISOString(), // Capture current timestamp
       });
 
